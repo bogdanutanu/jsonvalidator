@@ -24,8 +24,7 @@ public class ValidateJsonInFile {
         String fileName = args[0];
 
         try (Stream<String> stream = Files.lines(Paths.get(fileName))){
-            stream.map(ValidateJsonInFile::filterInvalid).filter(Optional::isPresent).forEach
-                    (System.out::println);
+            stream.map(ValidateJsonInFile::filterInvalid).forEach(o -> o.ifPresent(System.out::println));
         } catch (IOException e) {
             e.printStackTrace();
         }
